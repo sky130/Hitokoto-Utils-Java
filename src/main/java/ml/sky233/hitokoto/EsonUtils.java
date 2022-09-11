@@ -80,4 +80,19 @@ public class EsonUtils {
             }
         }
     }
+    
+    //一个对你们来说没什么用的函数
+    public static String getArrayText(Object var1, int var2) {
+        JSONArray var3 = (JSONArray)var1;
+        if (var3 == null) {
+            return "";
+        } else {
+            try {
+                String var4 = var3.getString(var2);
+                return var4;
+            } catch (JSONException var5) {
+                return "";
+            }
+        }
+    }
 }
