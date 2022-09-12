@@ -137,7 +137,7 @@ public class HitokotoUtils {
                 .add("email_poll_report_daily", setting[5])
                 .build();
         Request postRequest = new Request.Builder()
-                .url("https://hitokoto.cn/api/restful/v1/user/notification/settings")//请求接口
+                .url("https://hitokoto.cn/api/restful/v1/user/notification/settings?token=" + token)//请求接口
                 .post(requestBody)//post请求
                 .build();
         try {
@@ -720,7 +720,7 @@ public class HitokotoUtils {
     public static String[] getSetting() {
         String str = "";
         OkHttpClient okClient = new OkHttpClient();
-        Request request = new Request.Builder().url("https://hitokoto.cn/api/restful/v1//user/notification/settings?token=" + token).build();
+        Request request = new Request.Builder().url("https://hitokoto.cn/api/restful/v1/user/notification/settings?token=" + token).build();
         try {
             Response response = okClient.newCall(request).execute();
             if (response.isSuccessful()) {
@@ -743,7 +743,7 @@ public class HitokotoUtils {
                 object = EsonUtils.getArrayObject(EsonUtils.getArray(obj, "data"), 0);
                 string = EsonUtils.getArrayText(EsonUtils.getArray(obj, "data"), 0);
                 Str[1] = EsonUtils.getObjectText(obj, "email_notification_global");
-                for (int a = 1; 12 > a; a++) {
+                for (int a = 1; 7 > a; a++) {
                     Str[a] = EsonUtils.getObjectText(obj, setting_type[a - 1]);
                     if (EsonUtils.getObjectText(obj, setting_type[a - 1]).equals("0"))
                         setting[a - 1] = "FALSE";
@@ -792,7 +792,7 @@ public class HitokotoUtils {
 
         String str = "";
         OkHttpClient okClient = new OkHttpClient();
-        Request request = new Request.Builder().url("https://hitokoto.cn/api/restful/v1/user?token=" + token).build();
+        Request request = new Request.Builder().url("https://hitokoto.cn/api/restful/v1/user/hitokoto/like?token=" + token).build();
 
         try {
             Response response = okClient.newCall(request).execute();
